@@ -21,19 +21,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>7C1536ED-6F83-4221-A584-B8E6C369D985</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
 		<key>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</key>
 		<array>
 			<dict>
@@ -58,31 +45,6 @@
 	<string>AD Info</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>query=$1
-
-echo -n 'golden'</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7C1536ED-6F83-4221-A584-B8E6C369D985</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -166,13 +128,6 @@ echo -n 'golden'</string>
 			<integer>510</integer>
 			<key>ypos</key>
 			<integer>440</integer>
-		</dict>
-		<key>7C1536ED-6F83-4221-A584-B8E6C369D985</key>
-		<dict>
-			<key>xpos</key>
-			<integer>335</integer>
-			<key>ypos</key>
-			<integer>355</integer>
 		</dict>
 		<key>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</key>
 		<dict>
