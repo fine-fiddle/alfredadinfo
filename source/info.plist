@@ -8,20 +8,7 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
-		<key>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</key>
+		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -34,6 +21,8 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</key>
+		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>jerome</string>
@@ -51,7 +40,7 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>ad</string>
+				<string>test</string>
 				<key>subtext</key>
 				<string>give me an email or samaccount!</string>
 				<key>text</key>
@@ -65,6 +54,55 @@
 			<string>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>ad</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>please wait subtext</string>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>/Users/jeknapp/repos/dotfilesetc/apps/alfredapp/Alfred.alfredpreferences/workflows/user.workflow.530FE179-7373-4D59-8666-E8DD822CBFBB/gather_info.sh</string>
+				<key>subtext</key>
+				<string>SAMAccount or Email, please</string>
+				<key>title</key>
+				<string>AD Info Grabber</string>
+				<key>type</key>
+				<integer>8</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>0FF35FF2-AE99-4512-B624-513974C8EBB6</string>
+			<key>version</key>
+			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -87,56 +125,44 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string></string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string>./gather_info.sh</string>
-				<key>type</key>
-				<integer>8</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
+		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
+		<dict>
+			<key>xpos</key>
+			<integer>230</integer>
+			<key>ypos</key>
+			<integer>435</integer>
+		</dict>
 		<key>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>175</integer>
+			<integer>225</integer>
 			<key>ypos</key>
-			<integer>440</integer>
+			<integer>240</integer>
 		</dict>
 		<key>77B56BED-3443-4C92-A01D-650C17B2679E</key>
 		<dict>
 			<key>xpos</key>
 			<integer>510</integer>
 			<key>ypos</key>
-			<integer>440</integer>
-		</dict>
-		<key>AC632585-FBB3-46E5-B0E2-B2773DC66FF2</key>
-		<dict>
-			<key>xpos</key>
-			<integer>325</integer>
-			<key>ypos</key>
-			<integer>700</integer>
+			<integer>435</integer>
 		</dict>
 	</dict>
+	<key>variables</key>
+	<dict>
+		<key>ADDOMAIN</key>
+		<string>PAYPALCORP</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>ADDOMAIN</string>
+	</array>
+	<key>version</key>
+	<string></string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>
