@@ -21,8 +21,6 @@
 				<false/>
 			</dict>
 		</array>
-		<key>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</key>
-		<array/>
 	</dict>
 	<key>createdby</key>
 	<string>jerome</string>
@@ -37,21 +35,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>keyword</key>
-				<string>test</string>
-				<key>subtext</key>
-				<string>give me an email or samaccount!</string>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
 				<key>text</key>
-				<string>Active Directory Info</string>
-				<key>withspace</key>
-				<true/>
+				<string>{query}</string>
+				<key>title</key>
+				<string>{query}</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</string>
+			<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -75,9 +73,9 @@
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<true/>
+				<false/>
 				<key>queuedelaymode</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
@@ -104,27 +102,6 @@
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
-			<key>uid</key>
-			<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -133,23 +110,16 @@
 		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
 		<dict>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>125</integer>
 			<key>ypos</key>
-			<integer>435</integer>
-		</dict>
-		<key>2B5992DF-782D-4CE4-92F1-3AA73BCBE5AA</key>
-		<dict>
-			<key>xpos</key>
-			<integer>225</integer>
-			<key>ypos</key>
-			<integer>240</integer>
+			<integer>185</integer>
 		</dict>
 		<key>77B56BED-3443-4C92-A01D-650C17B2679E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>510</integer>
+			<integer>405</integer>
 			<key>ypos</key>
-			<integer>435</integer>
+			<integer>185</integer>
 		</dict>
 	</dict>
 	<key>variables</key>

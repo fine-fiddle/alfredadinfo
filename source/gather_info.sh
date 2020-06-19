@@ -1,43 +1,44 @@
 #! /bin/zsh
 EMPLOYEE="$1"
-TEST="funky"
 
 if [[ "$EMPLOYEE" == *"@"* ]]; then
-  EMPLOYEE=$(echo "$EMPLOYEE" | awk 'BEGIN { FS = "@" } ; {print $1}')
+  EMPLOYEE=$(echo "$EMPLOYEE" | awk 'BEGIN { FS = "@" } ; {print $1}');
 fi
 
-ADDOMAIN="PAYPALCORP"
-# EMPLOYEE=""
+
+# TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires, fte vs AFW vs hourly, IC and Manager badge. 
 
 
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE SMBPasswordLastSet | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE extensionAttribute8 | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE FirstName | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE LastName | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE userAccountControl | awk '{print $NF}';
-# dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE extensionAttribute4 | awk '{print $NF}';
+# Gathering multiple predicates in one command reduces time to run script
+BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName State 2>&1);
 
-BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName 2>&1)
-
-COSTC=$(echo $BULK | grep 'msExchExtensionAttribute16' | awk '{print $NF}';)
-PASSSET=$(echo $BULK | grep 'SMBPasswordLastSet' | awk '{print $NF}';)
-QID=$(echo $BULK | grep 'extensionAttribute8' | awk '{print $NF}';)
-GIVEN=$(echo $BULK | grep 'FirstName' | awk '{print $NF}';)
-SURNAME=$(echo $BULK | grep 'LastName' | awk '{print $NF}';)
-UAC=$(echo $BULK | grep "userAccountControl" | awk '{print $NF}';)
-EID=$(echo $BULK | grep "extensionAttribute4" | awk '{print $NF}';)
-CITY=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE City | tail -n1 | awk '{$1=$1;print;}')
-CN=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE cn | tail -n1 | awk '{$1=$1;print;}')
-COMMENT=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE Comment 2>&1| tail -n1 | awk '{$1=$1;print;}')
-if [[ "$COMMENT" = "No such key: Comment" ]]; then COMMENT="null [no comment in AD]"; fi
-HOLD=$(echo $BULK | grep "extensionAttribute13" | awk '{print $NF}';)
-if [[ "$HOLD" = "extensionAttribute13" ]]; then HOLD="unheld"; fi
-DESK=$(echo $BULK | grep "physicalDeliveryOfficeName" | awk '{print $NF}';)
-if [[ "$DESK" = "physicalDeliveryOfficeName" ]]; then DESK="undesked"; fi
-RAWDIRECTS=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE directReports 2>&1 | grep -v "dsAttrTypeNative:directReports:" | awk '{$1=$1;print;}')
-if [[ "$RAWDIRECTS" = "No such key: directReports" ]]; then RAWDIRECTS="null [no reports in AD]"; fi
-RAWMANAGE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE manager 2>&1 | tail -n1)
+COSTC=$(echo $BULK | grep 'msExchExtensionAttribute16' | awk '{print $NF}';);
+QID=$(echo $BULK | grep 'extensionAttribute8' | awk '{print $NF}';);
+GIVEN=$(echo $BULK | grep 'FirstName' | awk '{print $NF}';);
+SURNAME=$(echo $BULK | grep 'LastName' | awk '{print $NF}';);
+EID=$(echo $BULK | grep "extensionAttribute4" | awk '{print $NF}';);
+CITY=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE City | tail -n1 | awk '{$1=$1;print;}');
+TITLE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE JobTitle | tail -n1 | awk '{$1=$1;print;}');
+STATE=$(echo $BULK | grep "State" | awk '{print $NF}';);
+CN=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE cn | tail -n1 | awk '{$1=$1;print;}');
+UAC=$(echo $BULK | grep "userAccountControl" | awk '{print $NF}';);
+PASSSETNT=$(echo $BULK | grep 'SMBPasswordLastSet' | awk '{print $NF}';);
+PASSSETUNIX="$((($PASSSETNT/10000000)-11644473600))";
+PASSEXPIRESUNIX=$(expr $PASSSETUNIX + 7776000);
+PASSEXPIRESHUMAN=$(date -j -f "%s" $(expr $PASSSETUNIX + 7776000));
+PASSSETHUMAN=$(date -j -f "%s" "$PASSSETUNIX");
+UNIXSECONDDIFFERENCE=$(expr $(date "+%s") - $PASSSETUNIX);
+PASSWORDDAYDIFFERENCE=$(expr $UNIXSECONDDIFFERENCE / 86400);
+PASSWORDDAYSREMAINING=$(expr 90 - $PASSWORDDAYDIFFERENCE);
+COMMENT=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE Comment 2>&1| tail -n1 | awk '{$1=$1;print;}');
+if [[ "$COMMENT" = "No such key: Comment" ]]; then COMMENT="null [no comment in AD]"; EMPLOYED="1"; fi;
+HOLD=$(echo $BULK | grep "extensionAttribute13" | awk '{print $NF}';);
+if [[ "$HOLD" = "extensionAttribute13" ]]; then HOLD="null [no legal hold]"; HELD="0" fi;
+DESK=$(echo $BULK | grep "physicalDeliveryOfficeName" | awk '{print $NF}';);
+if [[ "$DESK" = "physicalDeliveryOfficeName" ]]; then DESK="undesked"; fi;
+RAWDIRECTS=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE directReports 2>&1 | grep -v "dsAttrTypeNative:directReports:" | awk '{$1=$1;print;}');
+if [[ "$RAWDIRECTS" = "No such key: directReports" ]]; then RAWDIRECTS="null [no reports in AD]"; fi;
+RAWMANAGE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE manager 2>&1 | tail -n1);
 if [[ "$RAWMANAGE" = "No such key: manager" ]]; 
     then 
         RAWMANAGE="null - no manager listed in AD";
@@ -46,37 +47,103 @@ if [[ "$RAWMANAGE" = "No such key: manager" ]];
     else 
         MANAGERCN=$(echo "$RAWMANAGE" | awk '{$1=$1;print;}' | sed 's/,OU.*//' | sed 's/CN=//' | tr -d '\\');
         MANAGERSAM=$(echo "$RAWMANAGE" | grep -o '(.*)' | tr -d '()');
+        MANAGERTITLE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$MANAGERSAM JobTitle | tail -n1 | awk '{$1=$1;print;}');
 fi
 
 
 
 # echo "
-# cost center is $COSTC  
+#- cost center is $COSTC  
 # passet is $PASSSET  
-# QID is $QID 
+#- QID is $QID 
 # Given is $GIVEN 
 # Surname is $SURNAME  
-# UserAccountContro is $UAC 
-# EmployeeID is $EID 
-# Legal is $HOLD
-# Desk is $Desk
-# City is $CITY
-# Raw Manager is $RAWMANAGE
-# Manager CN is $MANAGERCN
-# Manager SAM is $MANAGERSAM
-# Raw Directs are $RAWDIRECTS
+#- UserAccountContro is $UAC 
+#- EmployeeID is $EID 
+#- City is $CITY
+#- State is $STATE
 # CN is $CN
-# Comment is $COMMENT"
+#- UAC is $UAC
+#- Comment is $COMMENT"
+#- Legal is $HOLD
+#- Desk is $Desk
+# Raw Directs are $RAWDIRECTS
+#- Raw Manager is $RAWMANAGE
+#- Manager CN is $MANAGERCN
+#- Manager SAM is $MANAGERSAM
+
+if [[ "$MANAGERCN" = *"Data source"* ]]; then
+    cat << NOADERROR 
+    {"items": [{
+            "type": "default",
+            "uid": "No AD Connection",
+            "title": "No Active Directory Connection",
+            "subtitle": "Did you set the Alfred Workflow Environment Variable? Are you on the right network?",
+            "arg": "Did you set the Alfred Workflow Environment Variable? On the right network?",
+            "autocomplete": "x",
+            "mods": {
+                "alt": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                },
+                "cmd": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                }
+            },
+
+            "icon": {
+                "path": "icons/no_server.png"
+            },
+        }
+    ]}
+NOADERROR
+    exit 1
+fi
+
+if [[ "$MANAGERCN" = *"14136"* ]]; then
+    cat << NOUSERERROR 
+    {"items": [{
+            "type": "default",
+            "uid": "no-such-account",
+            "title": "Failed Lookup",
+            "subtitle": "No Such Account",
+            "arg": "Failed Lookup: No Such Account",
+            "mods": {
+                "alt": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                },
+                "cmd": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                }
+            },
+            "icon": {
+                "path": "icons/what_person.png"
+            },
+        }
+    ]}
+NOUSERERROR
+    exit 1
+fi
+
 
 cat << EOB
 {"items": [
 
 	{
 		"type": "default",
-		"title": "$MANAGERCN",
-		"subtitle": "Manager CN",
+   		"uid": "manager",
+		"title": "Manager",
+		"subtitle": "$MANAGERCN - $MANAGERTITLE",
 		"arg": "$MANAGERCN",
 		"autocomplete": "Manager",
+        "quicklookurl": "https://bridge.paypalcorp.com/profile/$MANAGERSAM",
 		"mods": {
             "alt": {
                 "valid": true,
@@ -84,62 +151,165 @@ cat << EOB
                 "subtitle": "Manager Bridge"
             },
             "cmd": {
-                "valid": true,
-                "arg": "alfredapp.com/shop/",
-                "subtitle": "https://www.alfredapp.com/shop/"
+                "valid": false,
+                "arg": "https://myorg.paypalcorp.com/Pages/orgchart.aspx?loginId=$MANAGERSAM&type=ALL",
+                "subtitle": "Manager MyOrg"
             },
         },
         "icon": {
-			"path": "smoking-boss.png"
+			"path": "icons/orangeboss.png"
 		}
-	},
-
-	{
-		"valid": false,
-		"uid": "flickr",
-		"title": "$ADDOMAIN",
-		"icon": {
-			"path": "flickr.png"
-		}
-	},
-
-	{
-		"uid": "image",
-		"type": "file",
-		"title": "My holiday photo",
-		"subtitle": "~/Pictures/My holiday photo.jpg",
-		"autocomplete": "My holiday photo",
-		"icon": {
-			"type": "filetype",
-			"path": "public.jpeg"
-		}
-	},
-
-	{
-		"valid": false,
-		"uid": "alfredapp",
-		"title": "Alfred Website",
-		"subtitle": "https://www.alfredapp.com/",
-		"arg": "alfredapp.com",
-		"autocomplete": "Alfred Website",
-		"quicklookurl": "https://www.alfredapp.com/",
-		"mods": {
-			"alt": {
-				"valid": true,
-				"arg": "alfredapp.com/powerpack",
-				"subtitle": "https://www.alfredapp.com/powerpack/"
-			},
-			"cmd": {
-				"valid": true,
-				"arg": "alfredapp.com/powerpack/buy/",
-				"subtitle": "https://www.alfredapp.com/powerpack/buy/"
-			},
-		},
-		"text": {
-			"copy": "https://www.alfredapp.com/ (text here to copy)",
-			"largetype": "https://www.alfredapp.com/ (text here for large type)"
-		}
-	}
+	},{
+        "type": "default",
+        "uid": "id-numbers",
+        "title": "ID Numbers",
+        "subtitle": "Cost Center: $COSTC",
+        "arg": "$COSTC",
+        "quicklookurl": "https://bridge.paypalcorp.com/profile/$EMPLOYEE",
+        "autocomplete": "id",
+        "mods": {
+            "alt": {
+                "valid": true,
+                "arg": "$QID",
+                "subtitle": "QID: $QID"
+            },
+            "cmd": {
+                "valid": true,
+                "arg": "$EID",
+                "subtitle": "Employee ID: $EID"
+            }
+        },
+        "icon": {
+            "path": "icons/identification_card-orange.png"
+        }
+    },{
+        "type": "default",
+        "uid": "legal_status",
+        "title": "$HOLD",
+        "subtitle": "$COMMENT",
+        "arg": "$EMPLOYEE - $HOLD - $COMMENT",
+        "quicklookurl": "x",
+        "autocomplete": "x",
+        "mods": {
+            "alt": {
+                "valid": true,
+                "arg": "$COMMENT",
+                "subtitle": "$COMMENT"
+            },
+            "cmd": {
+                "valid": true,
+                "arg": "$HOLD",
+                "subtitle": "$HOLD"
+            }
+        },
+        "icon": {
+            "path": "icons/orangegavel.png"
+        },
+    },{
+        "type": "default",
+        "uid": "who_it_is",
+        "title": "$GIVEN $SURNAME - $TITLE",
+        "subtitle": "$STATE - $CITY - $DESK",
+        "arg": "x",
+        "quicklookurl": "x",
+        "autocomplete": "x",
+        "mods": {
+            "alt": {
+                "valid": false,
+                "arg": "",
+                "subtitle": ""
+            },
+            "cmd": {
+                "valid": false,
+                "arg": "",
+                "subtitle": ""
+            }
+        },
+        "icon": {
+            "path": "icons/orange_employee.png"
+        },
+    },{
+        "type": "default",
+        "uid": "acct-status",
+        "title": "UAC: $UAC   Pass set $PASSWORDDAYDIFFERENCE days ago.   $PASSWORDDAYSREMAINING days remain.",
+        "subtitle": "Updated: $PASSSETHUMAN  -  Expires: $PASSEXPIRESHUMAN" ,
+        "arg": "x",
+        "quicklookurl": "x",
+        "autocomplete": "x",
+        "mods": {
+            "alt": {
+                "valid": true,
+                "arg": "",
+                "subtitle": ""
+            },
+            "cmd": {
+                "valid": true,
+                "arg": "",
+                "subtitle": ""
+            }
+        },
+        "icon": {
+            "path": "icons/orange_status_check.png"
+        },
+    },{
+        "type": "default/file",
+        "uid": "x",
+        "title": "x",
+        "subtitle": "x",
+        "arg": "x",
+        "quicklookurl": "x",
+        "autocomplete": "x",
+        "mods": {
+            "alt": {
+                "valid": true,
+                "arg": "",
+                "subtitle": ""
+            },
+            "cmd": {
+                "valid": true,
+                "arg": "",
+                "subtitle": ""
+            }
+        },
+        "icon": {
+            "type": "filetype",
+            "path": "x.png"
+        },
+        "text": {
+            "copy": "https://www.alfredapp.com/ (text here to copy)",
+            "largetype": "https://www.alfredapp.com/ (text here for large type)"
+        }
+    },
 
 ]}
 EOB
+
+	# {
+	# 	"type": "default/file",
+	# 	"uid": "x",
+	# 	"title": "x",
+    #     "subtitle": "x",
+    #     "quicklookurl": "x",
+    #     "arg": "x",
+	# 	"autocomplete": "x",
+	# 	"mods": {
+    #         "alt": {
+    #             "valid": true,
+    #             "arg": "",
+    #             "subtitle": ""
+    #         },
+    #         "cmd": {
+    #             "valid": true,
+    #             "arg": "",
+    #             "subtitle": ""
+    #         }
+    #     },
+    #     "icon": {
+    #         "type": "filetype",
+	# 		"path": "x.png"
+	# 	},
+    #     "text": {
+	# 		"copy": "https://www.alfredapp.com/ (text here to copy)",
+	# 		"largetype": "https://www.alfredapp.com/ (text here for large type)"
+	# 	}
+	# }
