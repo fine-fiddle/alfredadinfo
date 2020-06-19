@@ -77,7 +77,7 @@
 				<key>queuedelaymode</key>
 				<integer>1</integer>
 				<key>queuemode</key>
-				<integer>1</integer>
+				<integer>2</integer>
 				<key>runningsubtext</key>
 				<string>please wait subtext</string>
 				<key>script</key>
@@ -104,7 +104,11 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>To Configure, set the Workflow Environment Variable "ADDOMAIN" to your AD domain name. 
+
+You can find the AD Domain by running 'dscl' on the command line, and then 'cd Active\ Directory' then 'ls'
+
+~~~~</string>
 	<key>uidata</key>
 	<dict>
 		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
