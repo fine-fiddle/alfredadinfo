@@ -136,7 +136,7 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 		<string>ADDOMAIN</string>
 	</array>
 	<key>version</key>
-	<string></string>
+	<string>0.0.1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>

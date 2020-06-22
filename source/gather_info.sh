@@ -7,6 +7,7 @@ fi
 
 
 # TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires, fte vs AFW vs hourly,. Groups. only add team section if appropriate. Asset lookup
+# Script not executable when downloaded - script file path is absolute to my computer
 
 
 # Gathering multiple predicates in one command reduces time to run script
@@ -170,7 +171,7 @@ cat << EOB
             }
         },
         "icon": {
-			"path": "icons/orangeboss.png"
+			"path": "icons/orange_boss.png"
 		}
 	},{
         "type": "default",
@@ -216,7 +217,7 @@ cat << EOB
             }
         },
         "icon": {
-            "path": "icons/orangegavel.png"
+            "path": "icons/orange_gavel.png"
         },
     },{
         "type": "default",
