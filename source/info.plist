@@ -85,7 +85,7 @@
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
-				<string>/Users/jeknapp/repos/dotfilesetc/apps/alfredapp/Alfred.alfredpreferences/workflows/user.workflow.530FE179-7373-4D59-8666-E8DD822CBFBB/gather_info.sh</string>
+				<string>gather_info.sh</string>
 				<key>subtext</key>
 				<string>SAMAccount or Email, please</string>
 				<key>title</key>

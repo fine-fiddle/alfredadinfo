@@ -7,7 +7,7 @@ fi
 
 
 # TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires, fte vs AFW vs hourly,. Groups. only add team section if appropriate. Asset lookup
-# Script not executable when downloaded - script file path is absolute to my computer
+# Script not executable when downloaded - 
 
 
 # Gathering multiple predicates in one command reduces time to run script
