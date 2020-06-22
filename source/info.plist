@@ -20,6 +20,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
 		</array>
 	</dict>
 	<key>createdby</key>
@@ -44,7 +54,7 @@
 				<key>text</key>
 				<string>{query}</string>
 				<key>title</key>
-				<string>{query}</string>
+				<string>Copied to Clipboard</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
@@ -79,7 +89,7 @@
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>please wait subtext</string>
+				<string>QUERYING ACTIVE DIRECTORY - - PLEASE WAIT</string>
 				<key>script</key>
 				<string></string>
 				<key>scriptargtype</key>
@@ -102,6 +112,50 @@
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[]</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>clipboard, notification</string>
+				<key>title</key>
+				<string>Choose Output</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>D1336C5D-0903-4179-8486-44B6601AD7C1</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>To Configure, set the Workflow Environment Variable "ADDOMAIN" to your AD domain name. 
@@ -116,14 +170,28 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 			<key>xpos</key>
 			<integer>125</integer>
 			<key>ypos</key>
-			<integer>185</integer>
+			<integer>160</integer>
 		</dict>
 		<key>77B56BED-3443-4C92-A01D-650C17B2679E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>405</integer>
+			<integer>365</integer>
 			<key>ypos</key>
-			<integer>185</integer>
+			<integer>95</integer>
+		</dict>
+		<key>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</key>
+		<dict>
+			<key>xpos</key>
+			<integer>365</integer>
+			<key>ypos</key>
+			<integer>215</integer>
+		</dict>
+		<key>D1336C5D-0903-4179-8486-44B6601AD7C1</key>
+		<dict>
+			<key>xpos</key>
+			<integer>130</integer>
+			<key>ypos</key>
+			<integer>405</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -136,7 +204,7 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 		<string>ADDOMAIN</string>
 	</array>
 	<key>version</key>
-	<string>0.0.1.0</string>
+	<string>0.0.1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>

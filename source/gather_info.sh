@@ -41,9 +41,11 @@ RAWDIRECTS=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMP
 if [[ "$RAWDIRECTS" = "No such key: directReports" ]]; 
     then 
         RAWDIRECTS="null [no reports in AD]";
-        DIRECTCOUNT="IC"
+        ICORMANAGER="IC";
+        DIRECTCOUNT="IC";
     else 
-        DIRECTCOUNT=$(echo M$(echo $RAWDIRECTS | wc -l | awk '{$1=$1; print $1;}'))
+        DIRECTCOUNT=$(echo $RAWDIRECTS | wc -l | awk '{$1=$1; print $1;}');
+        ICORMANAGER="M";
 fi;
 RAWMANAGE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE manager 2>&1 | tail -n1);
 if [[ "$RAWMANAGE" = "No such key: manager" ]]; 
@@ -168,6 +170,11 @@ cat << EOB
                 "valid": true,
                 "arg": "https://eagleeye.paypalcorp.com/people/$MANAGERQID",
                 "subtitle": "EagleEye Link"
+            },
+            "shift": {
+                "valid": true,
+                "arg": "$MANAGERSAM",
+                "subtitle": "Manager's SAM"
             }
         },
         "icon": {
