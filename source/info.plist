@@ -12,7 +12,32 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D44BE436-1BD6-4140-A84B-37339E98EA8B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -22,7 +47,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+				<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -45,21 +70,19 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>{query}</string>
-				<key>title</key>
-				<string>Copied to Clipboard</string>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+				<key>utf8</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.action.openurl</string>
 			<key>uid</key>
-			<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
+			<string>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -115,6 +138,36 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>https.*</string>
+						<key>outputlabel</key>
+						<string>url</string>
+						<key>uid</key>
+						<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>other</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>autopaste</key>
 				<false/>
 				<key>clipboardtext</key>
@@ -132,27 +185,21 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>fixedorder</key>
+				<key>lastpathcomponent</key>
 				<false/>
-				<key>items</key>
-				<string>[]</string>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string>clipboard, notification</string>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
 				<key>title</key>
-				<string>Choose Output</string>
-				<key>withspace</key>
-				<false/>
+				<string>Copied to Clipboard</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>D1336C5D-0903-4179-8486-44B6601AD7C1</string>
+			<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -170,28 +217,35 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 			<key>xpos</key>
 			<integer>125</integer>
 			<key>ypos</key>
-			<integer>160</integer>
+			<integer>165</integer>
 		</dict>
 		<key>77B56BED-3443-4C92-A01D-650C17B2679E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>365</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>95</integer>
+			<integer>355</integer>
 		</dict>
 		<key>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</key>
 		<dict>
 			<key>xpos</key>
-			<integer>365</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>215</integer>
+			<integer>330</integer>
 		</dict>
-		<key>D1336C5D-0903-4179-8486-44B6601AD7C1</key>
+		<key>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>130</integer>
+			<integer>460</integer>
 			<key>ypos</key>
-			<integer>405</integer>
+			<integer>150</integer>
+		</dict>
+		<key>D44BE436-1BD6-4140-A84B-37339E98EA8B</key>
+		<dict>
+			<key>xpos</key>
+			<integer>295</integer>
+			<key>ypos</key>
+			<integer>185</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -204,7 +258,7 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 		<string>ADDOMAIN</string>
 	</array>
 	<key>version</key>
-	<string>0.0.1.2</string>
+	<string>0.0.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>
