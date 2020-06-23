@@ -6,13 +6,77 @@ if [[ "$EMPLOYEE" == *"@"* ]]; then
 fi
 
 
-# TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires, fte vs AFW vs hourly,. Groups. only add team section if appropriate. Asset lookup
-# Script not executable when downloaded - 
+# TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires,. Groups. only add team section if appropriate. Asset lookup
+# TODO: Manager up to schulman
+# dsAttrTypeNative:extensionAttribute1: Contractor (FTE VS AWF)
+
 
 
 # Gathering multiple predicates in one command reduces time to run script
-BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName State whenCreated 2>&1);
+BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName State whenCreated extensionAttribute1 2>&1);
 
+if [[ "$BULK" = *"Data source"* ]]; then
+    cat << NOADERROR 
+    {"items": [{
+            "type": "default",
+            "uid": "No AD Connection",
+            "title": "No Active Directory Connection",
+            "subtitle": "Did you set the Alfred Workflow Environment Variable? Are you on the right network?",
+            "arg": "Did you set the Alfred Workflow Environment Variable? On the right network?",
+            "autocomplete": "x",
+            "mods": {
+                "alt": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                },
+                "cmd": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                }
+            },
+
+            "icon": {
+                "path": "icons/no_server.png"
+            },
+        }
+    ]}
+NOADERROR
+    exit 1
+fi
+
+if [[ "$BULK" = *"14136"* ]]; then
+    cat << NOUSERERROR 
+    {"items": [{
+            "type": "default",
+            "uid": "no-such-account",
+            "title": "Failed Lookup",
+            "subtitle": "No Such Account",
+            "arg": "Failed Lookup: No Such Account",
+            "mods": {
+                "alt": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                },
+                "cmd": {
+                    "valid": true,
+                    "arg": "$MANAGERCN",
+                    "subtitle": "$MANAGERCN"
+                }
+            },
+            "icon": {
+                "path": "icons/what_person.png"
+            },
+        }
+    ]}
+NOUSERERROR
+    exit 1
+fi
+
+
+JOBTYPE=$(echo $BULK | grep "extensionAttribute1:" | awk '{print $NF;}');
 COSTC=$(echo $BULK | grep 'msExchExtensionAttribute16' | awk '{print $NF}';);
 QID=$(echo $BULK | grep 'extensionAttribute8' | awk '{print $NF}';);
 GIVEN=$(echo $BULK | grep 'FirstName' | awk '{print $NF}';);
@@ -59,88 +123,6 @@ if [[ "$RAWMANAGE" = "No such key: manager" ]];
         MANAGERSAM=$(echo "$RAWMANAGE" | grep -o '(.*)' | tr -d '()');
         MANAGERTITLE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$MANAGERSAM JobTitle | tail -n1 | awk '{$1=$1;print;}');
         MANAGERQID=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$MANAGERSAM extensionAttribute8 | awk '{print $NF}');
-fi
-
-
-
-# echo "
-#- cost center is $COSTC  
-# passet is $PASSSET  
-#- QID is $QID 
-# Given is $GIVEN 
-# Surname is $SURNAME  
-#- UserAccountContro is $UAC 
-#- EmployeeID is $EID 
-#- City is $CITY
-#- State is $STATE
-# CN is $CN
-#- UAC is $UAC
-#- Comment is $COMMENT"
-#- Legal is $HOLD
-#- Desk is $Desk
-# Raw Directs are $RAWDIRECTS
-#- Raw Manager is $RAWMANAGE
-#- Manager CN is $MANAGERCN
-#- Manager SAM is $MANAGERSAM
-
-if [[ "$MANAGERCN" = *"Data source"* ]]; then
-    cat << NOADERROR 
-    {"items": [{
-            "type": "default",
-            "uid": "No AD Connection",
-            "title": "No Active Directory Connection",
-            "subtitle": "Did you set the Alfred Workflow Environment Variable? Are you on the right network?",
-            "arg": "Did you set the Alfred Workflow Environment Variable? On the right network?",
-            "autocomplete": "x",
-            "mods": {
-                "alt": {
-                    "valid": true,
-                    "arg": "$MANAGERCN",
-                    "subtitle": "$MANAGERCN"
-                },
-                "cmd": {
-                    "valid": true,
-                    "arg": "$MANAGERCN",
-                    "subtitle": "$MANAGERCN"
-                }
-            },
-
-            "icon": {
-                "path": "icons/no_server.png"
-            },
-        }
-    ]}
-NOADERROR
-    exit 1
-fi
-
-if [[ "$MANAGERCN" = *"14136"* ]]; then
-    cat << NOUSERERROR 
-    {"items": [{
-            "type": "default",
-            "uid": "no-such-account",
-            "title": "Failed Lookup",
-            "subtitle": "No Such Account",
-            "arg": "Failed Lookup: No Such Account",
-            "mods": {
-                "alt": {
-                    "valid": true,
-                    "arg": "$MANAGERCN",
-                    "subtitle": "$MANAGERCN"
-                },
-                "cmd": {
-                    "valid": true,
-                    "arg": "$MANAGERCN",
-                    "subtitle": "$MANAGERCN"
-                }
-            },
-            "icon": {
-                "path": "icons/what_person.png"
-            },
-        }
-    ]}
-NOUSERERROR
-    exit 1
 fi
 
 
@@ -267,7 +249,7 @@ cat << EOB
             "alt": {
                 "valid": true,
                 "arg": "",
-                "subtitle": ""
+                "subtitle": "$JOBTYPE"
             },
             "cmd": {
                 "valid": true,
