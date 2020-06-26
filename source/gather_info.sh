@@ -7,6 +7,8 @@ fi
 
 
 # TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires,. Groups. only add team section if appropriate. Asset lookup
+# todo: employee ID
+# todo: get lockout status somehow? lockoutTime! nt time feild
 # TODO: Manager up to schulman
 # dsAttrTypeNative:extensionAttribute1: Contractor (FTE VS AWF)
 
