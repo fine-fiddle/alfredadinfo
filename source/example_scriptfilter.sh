@@ -39,6 +39,39 @@ for TARGET in ${(z)DIRECTSAMS};
 done;
 
 
+function recursereport SAMACCOUNTNAME {
+    SUBJECT=$1
+    RAWDIRECTS=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$SUBJECT directReports 2>&1 | grep -v "dsAttrTypeNative:directReports:" | awk '{$1=$1;print;}');
+    
+    if [[ "$SUBJECT" = *"CN="* ]] then
+        echo "There has been an error parsing CN - $SUBJECT";
+        return 1;
+    fi
+
+    if [[ "$SUBJECT" = *"OU="* ]] then
+        echo "$SUBJECT - This error ends here";
+        return 1;
+    fi
+
+
+    if [[ "$RAWDIRECTS" = *"eDSRecordNotFound"* ]]; then
+        echo "subject: $SUBJECT -eDSRecordNotFound";
+        return 1;
+    fi
+
+    if [[ "$RAWDIRECTS" = "No such key: directReports" ]]; then
+        echo $SUBJECT
+        return 0;
+    fi;
+
+    echo "$SUBJECT, m";
+    
+    DIRECTSAMS=$(echo $RAWDIRECTS | sed 's/.*(//' | sed 's/).*//' | tr '\n' ' ';);
+    for DIRECT in ${(z)DIRECTSAMS}; do
+        recursereport "$DIRECT";
+    done;
+}
+
 
 
 
