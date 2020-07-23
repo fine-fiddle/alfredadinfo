@@ -21,6 +21,129 @@
 				<false/>
 			</dict>
 		</array>
+		<key>1419BB40-7CAD-4D1B-B3D0-B1FAF21FAEF7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3729F3DE-B385-468E-BA63-5E51842C2458</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>2FCFCA35-E474-4A3E-A65D-A8249BF254FA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>FF6E9D50-7BA6-43FA-AE11-D8B813051E61</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>57611ABE-3304-4A4A-9166-FE749C614AEE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>3729F3DE-B385-468E-BA63-5E51842C2458</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>FF6E9D50-7BA6-43FA-AE11-D8B813051E61</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>D44BE436-1BD6-4140-A84B-37339E98EA8B</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>75A7ED1A-BC26-4A9A-A29C-11505B6C1103</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>1419BB40-7CAD-4D1B-B3D0-B1FAF21FAEF7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>93D1FDD6-6418-46A3-9DA1-81CB897A7470</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
+				<key>modifiersubtext</key>
+				<string>Instantly read your clipboard and paste the users cost center</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>93D1FDD6-6418-46A3-9DA1-81CB897A7470</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2FCFCA35-E474-4A3E-A65D-A8249BF254FA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>D44BE436-1BD6-4140-A84B-37339E98EA8B</key>
 		<array>
 			<dict>
@@ -37,7 +160,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+				<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -47,7 +170,7 @@
 			</dict>
 			<dict>
 				<key>destinationuid</key>
-				<string>77B56BED-3443-4C92-A01D-650C17B2679E</string>
+				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -67,25 +190,6 @@
 	<string>AD Info</string>
 	<key>objects</key>
 	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>browser</key>
-				<string></string>
-				<key>spaces</key>
-				<string></string>
-				<key>url</key>
-				<string></string>
-				<key>utf8</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.openurl</string>
-			<key>uid</key>
-			<string>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -138,6 +242,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string></string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>conditions</key>
 				<array>
 					<dict>
@@ -168,19 +291,25 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>autopaste</key>
+				<key>concurrently</key>
 				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-				<key>transient</key>
-				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>costcenter.sh</string>
+				<key>type</key>
+				<integer>8</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
+			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+			<string>1419BB40-7CAD-4D1B-B3D0-B1FAF21FAEF7</string>
 			<key>version</key>
-			<integer>3</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -203,6 +332,172 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>User Not Found.</string>
+						<key>outputlabel</key>
+						<string>NoUser</string>
+						<key>uid</key>
+						<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>No connection to Active Directory.</string>
+						<key>outputlabel</key>
+						<string>NoLDAP</string>
+						<key>uid</key>
+						<string>FF6E9D50-7BA6-43FA-AE11-D8B813051E61</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Data</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>3729F3DE-B385-468E-BA63-5E51842C2458</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>cc</string>
+				<key>subtext</key>
+				<string>hold alt for instant paste from clipboard contents</string>
+				<key>text</key>
+				<string>Cost Center</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>75A7ED1A-BC26-4A9A-A29C-11505B6C1103</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>costcenter_instant.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>93D1FDD6-6418-46A3-9DA1-81CB897A7470</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<true/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>transient</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>57611ABE-3304-4A4A-9166-FE749C614AEE</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>User Not Found.</string>
+						<key>outputlabel</key>
+						<string>NoUser</string>
+						<key>uid</key>
+						<string>CFDD716F-67EB-4D69-9B23-CDDF5F5B9235</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>No connection to Active Directory.</string>
+						<key>outputlabel</key>
+						<string>NoLDAP</string>
+						<key>uid</key>
+						<string>FF6E9D50-7BA6-43FA-AE11-D8B813051E61</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>Data</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>2FCFCA35-E474-4A3E-A65D-A8249BF254FA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>To Configure, set the Workflow Environment Variable "ADDOMAIN" to your AD domain name. 
@@ -214,38 +509,90 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 	<dict>
 		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
 		<dict>
+			<key>note</key>
+			<string>Show All AD Info</string>
 			<key>xpos</key>
-			<integer>125</integer>
+			<integer>30</integer>
 			<key>ypos</key>
-			<integer>165</integer>
+			<integer>10</integer>
+		</dict>
+		<key>1419BB40-7CAD-4D1B-B3D0-B1FAF21FAEF7</key>
+		<dict>
+			<key>note</key>
+			<string>ccenter for notification</string>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>115</integer>
+		</dict>
+		<key>2FCFCA35-E474-4A3E-A65D-A8249BF254FA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>365</integer>
+			<key>ypos</key>
+			<integer>265</integer>
+		</dict>
+		<key>3729F3DE-B385-468E-BA63-5E51842C2458</key>
+		<dict>
+			<key>xpos</key>
+			<integer>365</integer>
+			<key>ypos</key>
+			<integer>125</integer>
+		</dict>
+		<key>57611ABE-3304-4A4A-9166-FE749C614AEE</key>
+		<dict>
+			<key>note</key>
+			<string>Instant Paste</string>
+			<key>xpos</key>
+			<integer>705</integer>
+			<key>ypos</key>
+			<integer>255</integer>
+		</dict>
+		<key>75A7ED1A-BC26-4A9A-A29C-11505B6C1103</key>
+		<dict>
+			<key>note</key>
+			<string>Quick Cost Center Tool</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>195</integer>
 		</dict>
 		<key>77B56BED-3443-4C92-A01D-650C17B2679E</key>
 		<dict>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>705</integer>
 			<key>ypos</key>
-			<integer>355</integer>
+			<integer>120</integer>
+		</dict>
+		<key>93D1FDD6-6418-46A3-9DA1-81CB897A7470</key>
+		<dict>
+			<key>note</key>
+			<string>ccenter instant clipboard paste</string>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>255</integer>
 		</dict>
 		<key>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</key>
 		<dict>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>705</integer>
 			<key>ypos</key>
-			<integer>330</integer>
+			<integer>145</integer>
 		</dict>
 		<key>C715C4AD-2846-4BAF-B376-1F79E7AA6A26</key>
 		<dict>
 			<key>xpos</key>
-			<integer>460</integer>
+			<integer>705</integer>
 			<key>ypos</key>
-			<integer>150</integer>
+			<integer>10</integer>
 		</dict>
 		<key>D44BE436-1BD6-4140-A84B-37339E98EA8B</key>
 		<dict>
 			<key>xpos</key>
-			<integer>295</integer>
+			<integer>365</integer>
 			<key>ypos</key>
-			<integer>185</integer>
+			<integer>30</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -258,7 +605,7 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 		<string>ADDOMAIN</string>
 	</array>
 	<key>version</key>
-	<string>0.0.2.2</string>
+	<string>0.0.3.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>
