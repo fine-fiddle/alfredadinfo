@@ -1,2 +1,3 @@
 prep_for_revisioncontrol.sh
-example_scriptfilter.sh.DS_Store
+example_scriptfilter.sh
+.DS_Store

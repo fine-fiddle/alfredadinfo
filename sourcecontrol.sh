@@ -14,4 +14,6 @@ echo "removing old .alfredworkflow";
 rm AD\ Info.alfredworkflow
 
 echo "Building new .alfredworkflow from the new source files";
-zip -jFS AD\ Info.alfredworkflow source/*
+cd source 
+zip -r AD\ Info.alfredworkflow .
+mv AD\ Info.alfredworkflow ../
