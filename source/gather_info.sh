@@ -126,6 +126,13 @@ if [[ "$RAWMANAGE" = "No such key: manager" ]];
         MANAGERTITLE=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$MANAGERSAM JobTitle | tail -n1 | awk '{$1=$1;print;}');
         MANAGERQID=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$MANAGERSAM extensionAttribute8 | awk '{print $NF}');
 fi
+LOCALADMIN=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE memberOf 2>&1 | grep "PP_Corp_Local_Workstation_Admin" | awk '{$1=$1;print;}' )
+if [[ -z "$LOCALADMIN"  ]]; 
+    then
+        LOCALADMIN="null [no reports in AD]";
+    else
+        LOCALADMIN="localadmin"
+fi
 
 
 cat << EOB
@@ -287,7 +294,18 @@ cat << EOB
         "text": {
             "copy": "https://www.alfredapp.com/ (text here to copy)",
             "largetype": "https://www.alfredapp.com/ (text here for large type)"
-        }
+        },
+    },{
+        "type": "default",
+        "uid": "acct-status",
+        "title": "Local Admin Status",
+        "subtitle": "$LOCALADMIN",
+        "arg": "x",
+        "quicklookurl": "x",
+        "autocomplete": "id",
+        "icon": {
+            "path": "icons/identification_card-orange.png"
+        },
     },{
         "type": "default/file",
         "uid": "x",
