@@ -129,7 +129,7 @@ fi
 LOCALADMIN=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE memberOf 2>&1 | grep "PP_Corp_Local_Workstation_Admin" | awk '{$1=$1;print;}' )
 if [[ -z "$LOCALADMIN"  ]]; 
     then
-        LOCALADMIN="null [no reports in AD]";
+        LOCALADMIN="Not a local admin";
     else
         LOCALADMIN="localadmin"
 fi
@@ -297,11 +297,10 @@ cat << EOB
         },
     },{
         "type": "default",
-        "uid": "acct-status",
+        "uid": "group-status",
         "title": "Local Admin Status",
         "subtitle": "$LOCALADMIN",
-        "arg": "x",
-        "quicklookurl": "x",
+        "arg": "$LOCALADMIN",
         "autocomplete": "id",
         "icon": {
             "path": "icons/identification_card-orange.png"
