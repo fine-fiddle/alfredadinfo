@@ -6,16 +6,13 @@ if [[ "$EMPLOYEE" == *"@"* ]]; then
 fi
 
 
-# TODO: thumbnailPhoto, whenCreated, memberOf, accountExpires,. Groups. only add team section if appropriate. Asset lookup
-# todo: employee ID
-# todo: get lockout status somehow? lockoutTime! nt time feild
+# TODO: thumbnailPhoto, memberOf, accountExpires,. Groups. only add team section if appropriate. Asset lookup
 # TODO: Manager up to schulman
-# dsAttrTypeNative:extensionAttribute1: Contractor (FTE VS AWF)
 
 
 
 # Gathering multiple predicates in one command reduces time to run script
-BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName State whenCreated extensionAttribute1 2>&1);
+BULK=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE msExchExtensionAttribute16 SMBPasswordLastSet extensionAttribute8 userAccountControl extensionAttribute4 FirstName LastName extensionAttribute13 physicalDeliveryOfficeName State whenCreated extensionAttribute1 whenCreated lockoutTime 2>&1);
 
 if [[ "$BULK" = *"Data source"* ]]; then
     cat << NOADERROR 
@@ -79,6 +76,7 @@ fi
 
 
 JOBTYPE=$(echo $BULK | grep "extensionAttribute1:" | awk '{print $NF;}');
+STARTDATE=$(echo "$(date -j -f "%Y%m%d%H%M%S" "$(echo $BULK | grep "whenCreated" | awk '{print $NF;}' | sed 's/\..*//';)" "+%Y-%m-%d")");
 COSTC=$(echo $BULK | grep 'msExchExtensionAttribute16' | awk '{print $NF}';);
 QID=$(echo $BULK | grep 'extensionAttribute8' | awk '{print $NF}';);
 GIVEN=$(echo $BULK | grep 'FirstName' | awk '{print $NF}';);
@@ -98,7 +96,7 @@ UNIXSECONDDIFFERENCE=$(expr $(date "+%s") - $PASSSETUNIX);
 PASSWORDDAYDIFFERENCE=$(expr $UNIXSECONDDIFFERENCE / 86400);
 PASSWORDDAYSREMAINING=$(expr 90 - $PASSWORDDAYDIFFERENCE);
 COMMENT=$(dscl /Active\ Directory/${ADDOMAIN}/All\ Domains/ -read /Users/$EMPLOYEE Comment 2>&1| tail -n1 | awk '{$1=$1;print;}');
-if [[ "$COMMENT" = "No such key: Comment" ]]; then COMMENT="null [no comment in AD]"; EMPLOYED="1"; fi;
+if [[ "$COMMENT" = "No such key: Comment" ]]; then COMMENT="No comment in AD [probably still employed]"; EMPLOYED="1"; fi;
 HOLD=$(echo $BULK | grep "extensionAttribute13" | awk '{print $NF}';);
 if [[ "$HOLD" = "extensionAttribute13" ]]; then HOLD="null [no legal hold]"; HELD="0" fi;
 DESK=$(echo $BULK | grep "physicalDeliveryOfficeName" | awk '{print $NF}';);
@@ -134,6 +132,13 @@ if [[ -z "$LOCALADMIN"  ]];
         LOCALADMIN="localadmin"
 fi
 
+LOCKOUTTIMENT=$(echo $BULK | grep "lockoutTime" | awk '{print $NF}';);
+if [[ $LOCKOUTTIMENT == "0" ]]; then
+    LOCKEDAT="Not Locked";
+else
+    LOCKOUTTIMEUNIX="$((($LOCKOUTTIMENT/10000000)-11644473600))";
+    LOCKEDAT="$(date -j -f "%s" "$LOCKOUTTIMEUNIX";)";
+fi
 
 cat << EOB
 {"items": [
@@ -175,9 +180,8 @@ cat << EOB
         "type": "default",
         "uid": "id-numbers",
         "title": "ID Numbers",
-        "subtitle": "Cost Center: $COSTC",
-        "arg": "$COSTC",
-        "quicklookurl": "https://bridge.paypalcorp.com/profile/$EMPLOYEE",
+        "subtitle": "Acct Locked Since: $LOCKEDAT",
+        "arg": "",
         "autocomplete": "id",
         "mods": {
             "alt": {
@@ -189,6 +193,11 @@ cat << EOB
                 "valid": true,
                 "arg": "$EID",
                 "subtitle": "Employee ID: $EID"
+            },
+            "ctrl": {
+                "valid": true,
+                "arg": "$COSTC",
+                "subtitle": "Cost Center: $COSTC"
             }
         },
         "icon": {
@@ -197,8 +206,8 @@ cat << EOB
     },{
         "type": "default",
         "uid": "legal_status",
-        "title": "$HOLD",
-        "subtitle": "$COMMENT",
+        "title": "$HOLD  - Start Date: $STARTDATE",
+        "subtitle": "$COMMENT - Expiration: notimplemented",
         "arg": "$EMPLOYEE - $HOLD - $COMMENT",
         "quicklookurl": "x",
         "autocomplete": "x",
