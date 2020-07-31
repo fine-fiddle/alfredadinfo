@@ -3,6 +3,11 @@
 #your workflow directory path goes here.
 WORKFLOWPATH=""
 
+if [[ "$WORKFLOWPATH" == "" ]]; then
+  echo "you didnt configure workflowpath in your workflow compilation script";
+  exit 1;
+fi
+
 echo "Clearing out old source files. modify this script if you're tired of confirming each";
 
 rm -i -r ./source/*
