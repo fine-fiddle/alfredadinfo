@@ -108,6 +108,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>689AA6D1-2428-45EE-816D-97BA6B523AED</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3729F3DE-B385-468E-BA63-5E51842C2458</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>75A7ED1A-BC26-4A9A-A29C-11505B6C1103</key>
 		<array>
 			<dict>
@@ -132,6 +145,19 @@
 			</dict>
 		</array>
 		<key>93D1FDD6-6418-46A3-9DA1-81CB897A7470</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2FCFCA35-E474-4A3E-A65D-A8249BF254FA</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>B5C136F7-16A6-4135-8E1C-239E25431333</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -173,6 +199,29 @@
 				<string>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</string>
 				<key>modifiers</key>
 				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E9C78E53-15D6-4189-A6BA-0016E61A7288</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>689AA6D1-2428-45EE-816D-97BA6B523AED</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>B5C136F7-16A6-4135-8E1C-239E25431333</string>
+				<key>modifiers</key>
+				<integer>524288</integer>
 				<key>modifiersubtext</key>
 				<string></string>
 				<key>vitoclose</key>
@@ -383,6 +432,8 @@
 				<false/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -444,6 +495,8 @@
 				<true/>
 				<key>clipboardtext</key>
 				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<true/>
 			</dict>
@@ -498,13 +551,82 @@
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>mgr.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>689AA6D1-2428-45EE-816D-97BA6B523AED</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>mgr</string>
+				<key>subtext</key>
+				<string>hold alt for instant paste from clipboard contents</string>
+				<key>text</key>
+				<string>Manager Lookup</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E9C78E53-15D6-4189-A6BA-0016E61A7288</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string></string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string>mgr_instant.sh</string>
+				<key>type</key>
+				<integer>8</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>B5C136F7-16A6-4135-8E1C-239E25431333</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string>To Configure, set the Workflow Environment Variable "ADDOMAIN" to your AD domain name. 
 
 You can find the AD Domain by running 'dscl' on the command line, and then 'cd Active\ Directory' then 'ls'
 
-~~~~</string>
+~~~~
+
+v 0.0.3.4 add manager instant-lookup</string>
 	<key>uidata</key>
 	<dict>
 		<key>0FF35FF2-AE99-4512-B624-513974C8EBB6</key>
@@ -548,6 +670,13 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 			<key>ypos</key>
 			<integer>255</integer>
 		</dict>
+		<key>689AA6D1-2428-45EE-816D-97BA6B523AED</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>385</integer>
+		</dict>
 		<key>75A7ED1A-BC26-4A9A-A29C-11505B6C1103</key>
 		<dict>
 			<key>note</key>
@@ -573,6 +702,13 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 			<key>ypos</key>
 			<integer>255</integer>
 		</dict>
+		<key>B5C136F7-16A6-4135-8E1C-239E25431333</key>
+		<dict>
+			<key>xpos</key>
+			<integer>180</integer>
+			<key>ypos</key>
+			<integer>515</integer>
+		</dict>
 		<key>BA3A36A0-3002-46CB-ACC6-4CB73C0E8842</key>
 		<dict>
 			<key>xpos</key>
@@ -594,6 +730,15 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 			<key>ypos</key>
 			<integer>30</integer>
 		</dict>
+		<key>E9C78E53-15D6-4189-A6BA-0016E61A7288</key>
+		<dict>
+			<key>note</key>
+			<string>Quick Cost Center Tool</string>
+			<key>xpos</key>
+			<integer>30</integer>
+			<key>ypos</key>
+			<integer>445</integer>
+		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
@@ -605,7 +750,7 @@ You can find the AD Domain by running 'dscl' on the command line, and then 'cd A
 		<string>ADDOMAIN</string>
 	</array>
 	<key>version</key>
-	<string>0.0.3.3</string>
+	<string>0.0.3.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/forever-newung/alfredadinfo</string>
 </dict>
